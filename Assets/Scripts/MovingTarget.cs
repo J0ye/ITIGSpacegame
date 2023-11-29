@@ -19,11 +19,14 @@ public class MovingTarget : TargetController
 
     protected void Update()
     {
-        if(transform.position.y < -10)
+        if (!GameManager.instance.pause)
         {
-            SpawnNewTarget();
+            if (transform.position.y < -10)
+            {
+                SpawnNewTarget();
 
-            Destroy(gameObject);
+                Destroy(gameObject);
+            }
         }
     }
 }

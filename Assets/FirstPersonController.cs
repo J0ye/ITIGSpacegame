@@ -9,6 +9,8 @@ public class FirstPersonController : MonoBehaviour
     private float x = 0.0f;
     private float z = 0.0f;
     public float speed = 500.0f;
+    public LayerMask interactionMask;
+    private Ray laser;
 
 
     // Start is called before the first frame update
@@ -26,7 +28,17 @@ public class FirstPersonController : MonoBehaviour
     {
         x = Input.GetAxis("Horizontal");
         z = Input.GetAxis("Vertical");
-
+        laser = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit = new RaycastHit();
+        if (Physics.Raycast(laser, out hit, 10, interactionMask))
+        {
+            Interactable hitter;
+            if(Input.GetKeyDown(KeyCode.Mouse0) && hit.collider.gameObject.TryGetComponent<Interactable>(out hitter))
+            {
+                hitter.Interact();
+            }
+            print(hit.collider.gameObject.name);
+        }
         
     }
 
@@ -34,6 +46,18 @@ public class FirstPersonController : MonoBehaviour
     {
         Vector3 vector3 = transform.right * x + transform.forward * z;
         rb.velocity = vector3 * speed * Time.deltaTime;
-        
+        //StartCoroutine(nameof(iwas));
+        //transform.position = Vector3.Lerp();
+    }
+
+    private IEnumerable iwas()
+    {
+        yield return new WaitForSeconds(6f);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawRay(laser);
     }
 }

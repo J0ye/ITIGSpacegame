@@ -21,6 +21,11 @@ public class SpaceShipController : MonoBehaviour
         //cc = GetComponent<CharacterController>();
     }
 
+    private void Start()
+    {
+        GameManager.instance.spaceShip = transform;
+    }
+
     // Update is called once per frame
     void Update()
     {

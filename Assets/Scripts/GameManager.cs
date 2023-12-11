@@ -6,14 +6,13 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public GameObject spaceShip;
+    public GameObject spaceShipPrefab;
+    public Transform spaceShip;
     public bool state = false;
     public bool pause = false;
 
-
-
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         DontDestroyOnLoad(gameObject);
 
@@ -31,7 +30,7 @@ public class GameManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.R) && state)
         {
-            GameObject newShip = Instantiate(spaceShip, spaceShip.transform.position, spaceShip.transform.rotation);
+            GameObject newShip = Instantiate(spaceShipPrefab, spaceShipPrefab.transform.position, spaceShipPrefab.transform.rotation);
             newShip.GetComponent<SpaceShipController>().gm = this;
             state = false;
         }

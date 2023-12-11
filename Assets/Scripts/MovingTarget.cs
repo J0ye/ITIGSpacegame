@@ -17,7 +17,7 @@ public class MovingTarget : TargetController
         rb.velocity = -transform.up * speed;
     }
 
-    protected void Update()
+    protected virtual void Update()
     {
         if (!GameManager.instance.pause)
         {

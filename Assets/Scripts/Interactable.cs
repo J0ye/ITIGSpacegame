@@ -11,7 +11,7 @@ public class Interactable : MonoBehaviour
         startPos = transform.position;
     }
 
-    public void Interact()
+    public virtual void Interact()
     {
         if (transform.position == startPos)
         {

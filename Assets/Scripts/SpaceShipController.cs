@@ -7,8 +7,7 @@ public class SpaceShipController : MonoBehaviour
 {
     public GameManager gm;
     public float speed = 100f;
-    public float projectileVelocity = 10f;
-    public GameObject projectile;
+    
 
     protected Rigidbody2D rb;
     protected CharacterController cc;
@@ -33,13 +32,7 @@ public class SpaceShipController : MonoBehaviour
         var y = Input.GetAxisRaw("Vertical");
         inputVector = new Vector2(x, y); // (x, y); (0, 0)
 
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            GameObject obj = Instantiate(projectile, transform.position + transform.up, projectile.transform.rotation);
-            Vector3 v = transform.up * projectileVelocity;
-            obj.GetComponent<Rigidbody2D>().velocity = v;
-            Destroy(obj, 4f);
-        }
+        
 
     }
 

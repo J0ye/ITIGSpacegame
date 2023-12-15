@@ -35,6 +35,7 @@ public class MovingEnemy : MovingTarget
             if(Vector3.Distance(transform.position, targetpositions[targetpositions.Count - 1] + (Vector3.down * 10)) < 0.1f)
             {
                 Destroy(gameObject);
+                SpawnNewTarget();
             }
         }
     }

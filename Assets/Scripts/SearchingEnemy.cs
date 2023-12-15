@@ -35,6 +35,7 @@ public class SearchingEnemy : MovingTarget
                     {
                         Destroy(r.collider.gameObject);
                         Destroy(gameObject);
+                        SpawnNewTarget();
                     }
                 }
             }

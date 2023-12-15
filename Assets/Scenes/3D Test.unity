@@ -910,8 +910,7 @@ MonoBehaviour:
   interactionMask:
     serializedVersion: 2
     m_Bits: 2147483647
-  radius: 1
-  interactionRadius: 3
+  radius: 0.8
 --- !u!65 &1640638466
 BoxCollider:
   m_ObjectHideFlags: 0

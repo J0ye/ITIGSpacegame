@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public bool state = false;
     public bool pause = false;
 
+    protected int score = 0;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -48,6 +50,18 @@ public class GameManager : MonoBehaviour
             gameSpeed = 1f;
             SceneManager.UnloadSceneAsync(1);
         }
+    }
+
+    public void IncrementScore()
+    {
+        score++;
+        UiManager.instance.WriteScore(score);
+    }
+
+    public void IncrementScore(int value)
+    {
+        score += value;
+        UiManager.instance.WriteScore(score);
     }
 
     public void EndCycle()

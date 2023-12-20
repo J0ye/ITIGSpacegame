@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public GameObject spaceShipPrefab;
     public Transform spaceShip;
+    [Range(0f, 5f)]
+    public float gameSpeed = 1.0f;
     public bool state = false;
     public bool pause = false;
 
@@ -31,18 +33,19 @@ public class GameManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.R) && state)
         {
             GameObject newShip = Instantiate(spaceShipPrefab, spaceShipPrefab.transform.position, spaceShipPrefab.transform.rotation);
-            newShip.GetComponent<SpaceShipController>().gm = this;
             state = false;
         }
 
         if (Input.GetKeyDown(KeyCode.N) && !pause)
         {
             SceneManager.LoadScene(1, LoadSceneMode.Additive);
+            gameSpeed = 0.1f;
             pause = true;
         }
         else if(pause && Input.GetKeyDown(KeyCode.N))
         {
             pause = false;
+            gameSpeed = 1f;
             SceneManager.UnloadSceneAsync(1);
         }
     }

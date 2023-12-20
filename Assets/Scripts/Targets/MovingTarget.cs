@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class MovingTarget : TargetController
@@ -13,12 +14,12 @@ public class MovingTarget : TargetController
     {
         base.Awake();
         rb = GetComponent<Rigidbody2D>();
-
-        rb.velocity = -transform.up * speed;
     }
 
     protected virtual void Update()
     {
+        rb.velocity = -transform.up * speed * GameManager.instance.gameSpeed * Time.deltaTime;
+
         if (!GameManager.instance.pause)
         {
             if (transform.position.y < -10)

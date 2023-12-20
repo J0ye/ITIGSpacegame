@@ -45,14 +45,9 @@ public class FirstPersonController : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 vector3 = transform.right * x + transform.forward * z;
-        rb.velocity = vector3 * speed * Time.deltaTime;
+        rb.velocity = vector3 * speed * Time.deltaTime * GameManager.instance.gameSpeed;
         //StartCoroutine(nameof(iwas));
         //transform.position = Vector3.Lerp();
-    }
-
-    private IEnumerable iwas()
-    {
-        yield return new WaitForSeconds(6f);
     }
 
     private void OnDrawGizmos()

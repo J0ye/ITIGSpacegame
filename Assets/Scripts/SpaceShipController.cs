@@ -5,9 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class SpaceShipController : MonoBehaviour
 {
-    public GameManager gm;
-    public float speed = 100f;
-    
+    public float speed = 100f;    
 
     protected Rigidbody2D rb;
     protected CharacterController cc;
@@ -17,7 +15,6 @@ public class SpaceShipController : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        //cc = GetComponent<CharacterController>();
     }
 
     private void Start()
@@ -30,19 +27,12 @@ public class SpaceShipController : MonoBehaviour
     {
         var x = Input.GetAxisRaw("Horizontal");
         var y = Input.GetAxisRaw("Vertical");
-        inputVector = new Vector2(x, y); // (x, y); (0, 0)
-
-        
-
+        inputVector = new Vector2(x, y); // (x, y); (0, 0)  
     }
 
     private void FixedUpdate()
     {
         rb.velocity = inputVector * speed;
-        /*if(cc != null)
-        {
-            cc.Move(inputVector * speed);
-        }*/
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -55,6 +45,6 @@ public class SpaceShipController : MonoBehaviour
 
     private void OnDestroy()
     {
-        gm.EndCycle();
+        GameManager.instance.EndCycle();
     }
 }

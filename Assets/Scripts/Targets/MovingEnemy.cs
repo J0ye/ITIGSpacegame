@@ -20,9 +20,10 @@ public class MovingEnemy : MovingTarget
     // Update is called once per frame
     protected override void Update()
     {
-        if(step < targetpositions.Count)
+        float actualSpeed = speed * GameManager.instance.gameSpeed * Time.deltaTime;
+        if (step < targetpositions.Count)
         {
-            transform.position = Vector3.Lerp(transform.position, targetpositions[step], speed);
+            transform.position = Vector3.Lerp(transform.position, targetpositions[step], actualSpeed);
             if (Vector3.Distance(transform.position, targetpositions[step]) < 0.1f)
             {
                 step++;
@@ -31,7 +32,7 @@ public class MovingEnemy : MovingTarget
         }
         else
         {
-            transform.position = Vector3.Lerp(transform.position, targetpositions[targetpositions.Count - 1] + (Vector3.down * 10), speed);
+            transform.position = Vector3.Lerp(transform.position, targetpositions[targetpositions.Count - 1] + (Vector3.down * 10), actualSpeed);
             if(Vector3.Distance(transform.position, targetpositions[targetpositions.Count - 1] + (Vector3.down * 10)) < 0.1f)
             {
                 Destroy(gameObject);

@@ -8,17 +8,31 @@ public class SearchingEnemy : MovingTarget
     public ContactFilter2D filter = new ContactFilter2D();
     public float explosionRadius = 0.5f;
     public float optionalDistance = 0.1f;
+
+    protected Coroutine searchingRoutine;
+    protected float lastFramGameSpeed = 0;
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(GoToPlayer());
+        searchingRoutine = StartCoroutine(GoToPlayer());
+    }
+
+    protected override void Update()
+    {
+        if(lastFramGameSpeed != GameManager.instance.gameSpeed)
+        {
+            // restart searching routine every time the game speed changes
+            StopCoroutine(searchingRoutine);
+            searchingRoutine = StartCoroutine(GoToPlayer());
+            lastFramGameSpeed = GameManager.instance.gameSpeed;
+        }
     }
 
     private IEnumerator GoToPlayer()
     {
         yield return new WaitUntil(() => DoesPlayerExist());
-        transform.DOMove(GameManager.instance.spaceShip.position, speed);
-        yield return new WaitForSeconds(speed);
+        transform.DOMove(GameManager.instance.spaceShip.position, speed / GameManager.instance.gameSpeed);
+        yield return new WaitForSeconds(speed / GameManager.instance.gameSpeed);
         if(Vector3.Distance(transform.position, GameManager.instance.spaceShip.position) > optionalDistance)
         {
             StartCoroutine(GoToPlayer());

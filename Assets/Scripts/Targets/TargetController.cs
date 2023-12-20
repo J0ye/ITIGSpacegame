@@ -8,8 +8,7 @@ public class TargetController : MonoBehaviour
     public string projectileTag = "Projectile";
 
     protected Vector3 startPos;
-
-
+    
     protected virtual void Awake()
     {
         startPos = transform.position;

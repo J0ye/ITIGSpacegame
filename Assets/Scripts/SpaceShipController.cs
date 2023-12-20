@@ -35,14 +35,6 @@ public class SpaceShipController : MonoBehaviour
         rb.velocity = inputVector * speed;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.CompareTag("Target"))
-        {
-            Destroy(gameObject);
-        }
-    }
-
     private void OnDestroy()
     {
         GameManager.instance.EndCycle();

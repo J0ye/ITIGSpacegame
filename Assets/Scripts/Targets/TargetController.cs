@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
+using static UnityEngine.GraphicsBuffer;
 
 public class TargetController : MonoBehaviour
 {
     public Vector2 randomSpawn = new Vector2(-10, 10);
+    public float collisionAnimationDuration = 1f;
     public string projectileTag = "Projectile";
+    public string playerTag = "Projectile";
 
     protected Vector3 startPos;
     
@@ -22,6 +26,26 @@ public class TargetController : MonoBehaviour
             SpawnNewTarget();
             Destroy(gameObject);
         }
+        else if(collision.gameObject.CompareTag(playerTag))
+        {
+            StartCoroutine(HitPlayer(collision.gameObject));
+            StartCoroutine(Damage());
+        }
+    }
+
+    protected virtual IEnumerator HitPlayer(GameObject target)
+    {
+        target.transform.DOShakeScale(collisionAnimationDuration);
+        yield return new WaitForSeconds(collisionAnimationDuration);
+        Destroy(target);
+    }
+
+    public virtual IEnumerator Damage()
+    {
+        transform.DOShakeScale(collisionAnimationDuration);
+        yield return new WaitForSeconds(collisionAnimationDuration);
+        SpawnNewTarget();
+        Destroy(gameObject);
     }
 
     protected void SpawnNewTarget()

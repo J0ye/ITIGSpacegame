@@ -7,12 +7,6 @@ public class Weapon : MonoBehaviour
     public float projectileVelocity = 10f;
     public GameObject projectile;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     protected virtual void Update()
     {

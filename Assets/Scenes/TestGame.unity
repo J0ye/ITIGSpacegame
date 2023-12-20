@@ -1403,7 +1403,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1906181151, guid: 27c00f975e58b474aa491cf410d0f0db, type: 3}
       propertyPath: speed
-      value: 10
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1906181151, guid: 27c00f975e58b474aa491cf410d0f0db, type: 3}
+      propertyPath: playerTag
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1906181151, guid: 27c00f975e58b474aa491cf410d0f0db, type: 3}
+      propertyPath: collisionAnimationDuration
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 416021736350656038, guid: 27c00f975e58b474aa491cf410d0f0db, type: 3}
       propertyPath: m_Name
@@ -1472,7 +1480,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 30053191031100050, guid: bad8c93187510f9478bb7eb0a19e7cb1, type: 3}
       propertyPath: speed
-      value: 1
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 30053191031100050, guid: bad8c93187510f9478bb7eb0a19e7cb1, type: 3}
+      propertyPath: playerTag
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 30053191031100050, guid: bad8c93187510f9478bb7eb0a19e7cb1, type: 3}
+      propertyPath: collisionAnimationDuration
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1346370838608951768, guid: bad8c93187510f9478bb7eb0a19e7cb1, type: 3}
       propertyPath: m_Name

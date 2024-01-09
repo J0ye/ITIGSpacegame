@@ -5,11 +5,12 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 368706112103191035, guid: 473cc3ebfc367cd478fde399d26f2dda, type: 3}
       propertyPath: m_Name
-      value: Enemy (1)
+      value: Searching enemy
       objectReference: {fileID: 0}
     - target: {fileID: 6174156080240618063, guid: 473cc3ebfc367cd478fde399d26f2dda, type: 3}
       propertyPath: m_RootOrder
@@ -57,6 +58,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1718237960757885617, guid: 473cc3ebfc367cd478fde399d26f2dda, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 368706112103191035, guid: 473cc3ebfc367cd478fde399d26f2dda, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1906181151}
   m_SourcePrefab: {fileID: 100100000, guid: 473cc3ebfc367cd478fde399d26f2dda, type: 3}
 --- !u!1 &416021736350656038 stripped
 GameObject:
@@ -75,8 +82,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4c4a949cc79f5441b408770e140f7fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collectablePrefab: {fileID: 4474215155065256237, guid: c1964d8b21cb965409af407086fff735, type: 3}
+  maxHealth: 2
+  pointsOnKill: 2
   randomSpawn: {x: -10, y: 10}
+  collisionAnimationDuration: 1
   projectileTag: Projectile
+  playerTag: Projectile
   speed: 1
   filter:
     useTriggers: 0

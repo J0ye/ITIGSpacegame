@@ -5,12 +5,21 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 368706112103191035, guid: 473cc3ebfc367cd478fde399d26f2dda, type: 3}
       propertyPath: m_Name
-      value: PatternEnemy
+      value: PatternEnemy Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 1718237960757885617, guid: 473cc3ebfc367cd478fde399d26f2dda, type: 3}
+      propertyPath: speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1718237960757885617, guid: 473cc3ebfc367cd478fde399d26f2dda, type: 3}
+      propertyPath: collectablePrefab
+      value: 
+      objectReference: {fileID: 4474215155065256237, guid: c1964d8b21cb965409af407086fff735, type: 3}
     - target: {fileID: 6174156080240618063, guid: 473cc3ebfc367cd478fde399d26f2dda, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -56,4 +65,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 473cc3ebfc367cd478fde399d26f2dda, type: 3}

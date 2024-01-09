@@ -1,15 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class SpaceShipController : MonoBehaviour
 {
+    public List<Transform> weaponSlots = new List<Transform>();
     public float speed = 100f;    
 
     protected Rigidbody2D rb;
     protected CharacterController cc;
     protected Vector2 inputVector = new Vector2();
+    protected int slotIndex = 0;
 
     // Start is called before the first frame update
     void Awake()
@@ -28,6 +32,22 @@ public class SpaceShipController : MonoBehaviour
         var x = Input.GetAxisRaw("Horizontal");
         var y = Input.GetAxisRaw("Vertical");
         inputVector = new Vector2(x, y); // (x, y); (0, 0)  
+    }
+
+    public Weapon AddWeapon(Type type)
+    {
+        if(slotIndex < weaponSlots.Count)
+        {
+            weaponSlots[slotIndex].gameObject.SetActive(true);
+            Weapon ret = (Weapon)weaponSlots[slotIndex].gameObject.AddComponent(type);
+            slotIndex++;
+            return ret;
+        }
+        else
+        {
+            GameManager.instance.AddToScore(5);
+            return null;
+        }
     }
 
     private void FixedUpdate()

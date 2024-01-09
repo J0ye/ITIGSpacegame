@@ -14,6 +14,10 @@ public class Weapon : MonoBehaviour
         {
             OnActivate();
         }
+        else
+        {
+            IsInactive();
+        }
     }
 
     public virtual void OnEquip()
@@ -32,5 +36,10 @@ public class Weapon : MonoBehaviour
         Vector3 v = transform.up * projectileVelocity;
         obj.GetComponent<Rigidbody2D>().velocity = v;
         Destroy(obj, 4f);
+    }
+
+    public virtual void IsInactive()
+    {
+
     }
 }

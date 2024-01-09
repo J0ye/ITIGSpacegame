@@ -6,12 +6,25 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    public List<GameObject> targets = new List<GameObject>();
     public GameObject spaceShipPrefab;
     public Transform spaceShip;
     [Range(0f, 5f)]
     public float gameSpeed = 1.0f;
+    [Range(1f, 50f)]
+    public float waveCycleDuration = 5.0f;
+    [Header("Enemies")]
+    public List<GameObject> enemyPrefabs = new List<GameObject>();
+    public Vector2 rangeForEnemeyPositionsX = Vector2.zero;
+    public Vector2 rangeForEnemeyPositionsZ = Vector2.zero;
+    public Vector3 enemeySpawnArea = Vector3.zero;
+    public int maxEnemyAmmount = 2;
     public bool state = false;
     public bool pause = false;
+
+    protected PositionList positionList;
+    protected float cycleTimer = 0f;
+    protected int score = 0;
 
     // Start is called before the first frame update
     void Awake()
@@ -25,6 +38,13 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this);
         }
+
+        positionList = new PositionList(1, enemeySpawnArea, rangeForEnemeyPositionsX, rangeForEnemeyPositionsZ);
+    }
+
+    protected void Start()
+    {
+        LogCreator.instance.AddLog("Game starts in " + waveCycleDuration.ToString());
     }
 
     // Update is called once per frame
@@ -48,10 +68,67 @@ public class GameManager : MonoBehaviour
             gameSpeed = 1f;
             SceneManager.UnloadSceneAsync(1);
         }
+
+        if(!pause)
+        {
+            if (cycleTimer >= waveCycleDuration)
+            {
+                WaveCycle();
+                cycleTimer = 0;
+            }
+            else
+            {
+                cycleTimer += Time.deltaTime;
+            }
+        }
     }
 
     public void EndCycle()
     {
         state = true;
+    }
+
+    public void AddToScore(int value)
+    {
+        score += value;
+        UIManager.instance.WriteToScore(score.ToString());
+    }
+    
+    public void SubtractFromScore(int value)
+    {
+        score -= value;
+        UIManager.instance.WriteToScore(score.ToString());
+    }
+
+    /// <summary>
+    /// Is called every WaveCycleDuration seconds
+    /// </summary>
+    protected void WaveCycle()
+    {
+        if(!pause)
+        {
+            for (int i = targets.Count; i < maxEnemyAmmount; i++)
+            {
+                SpawnEnemy();
+            }
+            maxEnemyAmmount++;
+        }
+    }
+
+    protected void SpawnEnemy()
+    {
+        int rand = Random.Range(0, enemyPrefabs.Count);
+        Vector3 pos = positionList.GetRandomPositionNoPop();
+
+        GameObject newEnemy = Instantiate(enemyPrefabs[rand], pos, Quaternion.identity);
+        targets.Add(newEnemy);
+    }
+
+    public void RemoveEnemyFromList(GameObject enemy)
+    {
+        if(targets.Contains(enemy))
+        {
+            targets.Remove(enemy);
+        }
     }
 }

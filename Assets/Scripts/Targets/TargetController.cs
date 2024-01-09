@@ -10,17 +10,24 @@ public class TargetController : MonoBehaviour
     public int maxHealth = 2;
     public int pointsOnKill = 2;    
     public Vector2 randomSpawn = new Vector2(-10, 10);
+    public Color collisionColor = Color.red;
     public float collisionAnimationDuration = 1f;
     public string projectileTag = "Projectile";
     public string playerTag = "Projectile";
 
+    protected SpriteRenderer spriteRenderer;
     protected Vector3 startPos;
+    protected Color startColor = Color.white;
+    protected bool isDamaged = false;
+
     protected float currentHealth = 0;
     
     protected virtual void Awake()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>(); 
         startPos = transform.position;
         currentHealth = maxHealth;
+        startColor = spriteRenderer.color;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -46,13 +53,23 @@ public class TargetController : MonoBehaviour
 
     public virtual IEnumerator Damage()
     {
+        if (isDamaged)
+        {
+            yield break;
+        }
+        isDamaged = true;
+        GameManager.instance.IncrementScore(2);
         transform.DOShakeScale(collisionAnimationDuration);
+        spriteRenderer.DOColor(collisionColor, collisionAnimationDuration);
         currentHealth--;
         if (currentHealth <= 0)
         {
             Die();
         }
         yield return new WaitForSeconds(collisionAnimationDuration);
+        spriteRenderer.color = startColor; 
+        SpawnNewTarget();
+        Destroy(gameObject);
     }
     
     public virtual IEnumerator Damage(float damageValue)
@@ -69,7 +86,8 @@ public class TargetController : MonoBehaviour
     protected void SpawnNewTarget()
     {
         Vector3 newPos = new Vector3(Random.Range(randomSpawn.x, randomSpawn.y), startPos.y);
-        Instantiate(gameObject, newPos, transform.rotation);
+        GameObject obj = Instantiate(gameObject, newPos, transform.rotation);
+        obj.transform.localScale = Vector3.one;
     }
 
     protected void SpawnCollectable()

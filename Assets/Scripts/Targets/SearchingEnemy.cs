@@ -23,7 +23,10 @@ public class SearchingEnemy : MovingTarget
         {
             // restart searching routine every time the game speed changes
             StopCoroutine(searchingRoutine);
-            searchingRoutine = StartCoroutine(GoToPlayer());
+            if (GameManager.instance.gameSpeed >= 0)
+            {
+                searchingRoutine = StartCoroutine(GoToPlayer());
+            }
             lastFramGameSpeed = GameManager.instance.gameSpeed;
         }
     }

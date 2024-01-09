@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class UIManager : MonoBehaviour
+public class UiManager : MonoBehaviour
 {
-    public static UIManager instance;
+    public static UiManager instance;
+    public TMP_Text score;
 
-    public TMP_Text scoreText;
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
         }
@@ -21,15 +20,8 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void WriteToScore(string value)
+    public void WriteScore(int scoreUpdate)
     {
-        if(scoreText != null)
-        {
-            scoreText.text = value;
-        }
-        else
-        {
-            Debug.LogWarning("No score text found");
-        }
+        score.text = scoreUpdate.ToString();
     }
 }

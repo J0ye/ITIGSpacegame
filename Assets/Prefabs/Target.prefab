@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -5582577110399963390}
   - component: {fileID: 317350383237799374}
   - component: {fileID: -4739404232565913711}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Target
   m_TagString: Target
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &317350383237799374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,6 +166,7 @@ MonoBehaviour:
   maxHealth: 2
   pointsOnKill: 2
   randomSpawn: {x: -10, y: 10}
+  collisionColor: {r: 1, g: 0, b: 0, a: 1}
   collisionAnimationDuration: 1
   projectileTag: Projectile
   playerTag: Projectile

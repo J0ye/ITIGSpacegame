@@ -39,7 +39,7 @@ public class TargetController : MonoBehaviour
         }
         else if(collision.gameObject.CompareTag(playerTag) && currentHealth > 0)
         {
-            StartCoroutine(HitPlayer(collision.gameObject));
+            if(!isDamaged) GameManager.instance.DamageShip();
             StartCoroutine(Damage());
         }
     }
@@ -58,8 +58,6 @@ public class TargetController : MonoBehaviour
             yield break;
         }
         isDamaged = true;
-        GameManager.instance.IncrementScore(2);
-        transform.DOShakeScale(collisionAnimationDuration);
         spriteRenderer.DOColor(collisionColor, collisionAnimationDuration);
         currentHealth--;
         if (currentHealth <= 0)
@@ -67,20 +65,29 @@ public class TargetController : MonoBehaviour
             Die();
         }
         yield return new WaitForSeconds(collisionAnimationDuration);
-        spriteRenderer.color = startColor; 
-        SpawnNewTarget();
-        Destroy(gameObject);
+        spriteRenderer.color = startColor;
+        isDamaged = false;
     }
     
     public virtual IEnumerator Damage(float damageValue)
     {
-        transform.DOShakeScale(collisionAnimationDuration*Time.deltaTime);
+        if (isDamaged)
+        {
+            yield break;
+        }
+        isDamaged = true;
+        spriteRenderer.DOColor(collisionColor, collisionAnimationDuration);
         currentHealth -= damageValue;
         if (currentHealth <= 0)
         {
             Die();
         }
-        yield return new WaitForSeconds(collisionAnimationDuration * Time.deltaTime);
+        else
+        {
+            yield return new WaitForSeconds(collisionAnimationDuration * Time.deltaTime);
+            spriteRenderer.color = startColor;
+            isDamaged = false;
+        }
     }
 
     protected void SpawnNewTarget()

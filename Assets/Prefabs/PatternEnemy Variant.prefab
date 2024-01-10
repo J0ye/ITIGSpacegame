@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PatternEnemy Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 368706112103191035, guid: 473cc3ebfc367cd478fde399d26f2dda, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1718237960757885617, guid: 473cc3ebfc367cd478fde399d26f2dda, type: 3}
       propertyPath: speed
       value: 2
@@ -20,6 +24,14 @@ PrefabInstance:
       propertyPath: collectablePrefab
       value: 
       objectReference: {fileID: 4474215155065256237, guid: c1964d8b21cb965409af407086fff735, type: 3}
+    - target: {fileID: 5411396429292594601, guid: 473cc3ebfc367cd478fde399d26f2dda, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5691200810309158329, guid: 473cc3ebfc367cd478fde399d26f2dda, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6174156080240618063, guid: 473cc3ebfc367cd478fde399d26f2dda, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -63,6 +75,18 @@ PrefabInstance:
     - target: {fileID: 6174156080240618063, guid: 473cc3ebfc367cd478fde399d26f2dda, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7011884866434910438, guid: 473cc3ebfc367cd478fde399d26f2dda, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7837908532562634916, guid: 473cc3ebfc367cd478fde399d26f2dda, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8788347465854085197, guid: 473cc3ebfc367cd478fde399d26f2dda, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

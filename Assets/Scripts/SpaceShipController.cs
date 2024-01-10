@@ -50,6 +50,29 @@ public class SpaceShipController : MonoBehaviour
         }
     }
 
+    public bool RemoveWeapon()
+    {
+        Weapon toBeRemoved;
+        GameObject slot = weaponSlots[slotIndex].gameObject;
+        if (slotIndex > 0 && slot.TryGetComponent<Weapon>(out toBeRemoved))
+        {
+            Destroy(toBeRemoved);
+            slot.SetActive(false);
+            slotIndex--;
+            return true;
+        }
+
+        return false;
+    }
+
+    public void Damage()
+    {
+        if(!RemoveWeapon())
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private void FixedUpdate()
     {
         rb.velocity = inputVector * speed;

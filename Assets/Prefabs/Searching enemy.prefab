@@ -12,6 +12,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Searching enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 368706112103191035, guid: 473cc3ebfc367cd478fde399d26f2dda, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5411396429292594601, guid: 473cc3ebfc367cd478fde399d26f2dda, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5691200810309158329, guid: 473cc3ebfc367cd478fde399d26f2dda, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6174156080240618063, guid: 473cc3ebfc367cd478fde399d26f2dda, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -56,6 +68,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7011884866434910438, guid: 473cc3ebfc367cd478fde399d26f2dda, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7837908532562634916, guid: 473cc3ebfc367cd478fde399d26f2dda, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8788347465854085197, guid: 473cc3ebfc367cd478fde399d26f2dda, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1718237960757885617, guid: 473cc3ebfc367cd478fde399d26f2dda, type: 3}
     m_RemovedGameObjects: []
@@ -86,6 +110,7 @@ MonoBehaviour:
   maxHealth: 2
   pointsOnKill: 2
   randomSpawn: {x: -10, y: 10}
+  collisionColor: {r: 1, g: 0, b: 0, a: 1}
   collisionAnimationDuration: 1
   projectileTag: Projectile
   playerTag: Projectile

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Unity.VisualScripting;
 
 public class SearchingEnemy : MovingTarget
 {
@@ -36,7 +37,12 @@ public class SearchingEnemy : MovingTarget
         yield return new WaitUntil(() => DoesPlayerExist());
         transform.DOMove(GameManager.instance.spaceShip.position, speed / GameManager.instance.gameSpeed);
         yield return new WaitForSeconds(speed / GameManager.instance.gameSpeed);
-        if(Vector3.Distance(transform.position, GameManager.instance.spaceShip.position) > optionalDistance)
+        if (GameManager.instance.spaceShip == null)
+        {
+            //Player has been killed while traveling
+            StartCoroutine(GoToPlayer());
+        }
+        else if (Vector3.Distance(transform.position, GameManager.instance.spaceShip.position) > optionalDistance)
         {
             StartCoroutine(GoToPlayer());
         }

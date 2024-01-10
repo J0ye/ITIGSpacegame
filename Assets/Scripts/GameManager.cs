@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.R) && state)
         {
-            GameObject newShip = Instantiate(spaceShipPrefab, spaceShipPrefab.transform.position, spaceShipPrefab.transform.rotation);
+            spaceShip = Instantiate(spaceShipPrefab, spaceShipPrefab.transform.position, spaceShipPrefab.transform.rotation).transform;
             state = false;
         }
 
@@ -91,13 +91,18 @@ public class GameManager : MonoBehaviour
     public void AddToScore(int value)
     {
         score += value;
-        UIManager.instance.WriteToScore(score.ToString());
+        UiManager.instance.WriteScore(score);
     }
     
     public void SubtractFromScore(int value)
     {
         score -= value;
-        UIManager.instance.WriteToScore(score.ToString());
+        UiManager.instance.WriteScore(score);
+    }
+
+    public void DamageShip()
+    {
+        spaceShip.GetComponent<SpaceShipController>().Damage();
     }
 
     /// <summary>

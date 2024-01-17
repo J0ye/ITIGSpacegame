@@ -26,6 +26,11 @@ public class SpaceShipController : MonoBehaviour
         GameManager.instance.spaceShip = transform;
     }
 
+    public Vector2 GetInputVector()
+    {
+        return inputVector;
+    }
+
     // Update is called once per frame
     void Update()
     {

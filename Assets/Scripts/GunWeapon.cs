@@ -26,12 +26,17 @@ public class GunWeapon : Weapon
             ready = true;
             timer = 0;
         }
+        projectileVelocity = GameManager.instance.gunStat.projectileVelocity;
+        timeBetweenShots = GameManager.instance.gunStat.fireRate;
+
     }
 
     public override void OnActivate()
     {
         GameObject obj = Instantiate(projectile, transform.position + transform.up, projectile.transform.rotation);
-        Vector3 v = transform.up * projectileVelocity;
+        Vector2 inputVector = GameManager.instance.spaceShip.GetComponent<SpaceShipController>().GetInputVector();
+        Vector2 projectileDirection = transform.up + new Vector3(0, Mathf.Clamp01(inputVector.y), 0);
+        Vector3 v = projectileDirection * projectileVelocity ;
         obj.GetComponent<Rigidbody2D>().velocity = v;
         Collider2D coll = obj.GetComponent<Collider2D>();
         Physics2D.IgnoreCollision(coll, GetComponent<Collider2D>());
@@ -41,5 +46,6 @@ public class GunWeapon : Weapon
     public override void OnEquip()
     {
         projectile = Resources.Load<GameObject>("Capsule");
+        
     }
 }

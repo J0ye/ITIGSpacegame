@@ -7,8 +7,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public List<GameObject> targets = new List<GameObject>();
-    public GameObject spaceShipPrefab;
-    public Transform spaceShip;
     [Range(0f, 5f)]
     public float gameSpeed = 1.0f;
     [Range(1f, 50f)]
@@ -19,12 +17,19 @@ public class GameManager : MonoBehaviour
     public Vector2 rangeForEnemeyPositionsZ = Vector2.zero;
     public Vector3 enemeySpawnArea = Vector3.zero;
     public int maxEnemyAmmount = 2;
+    public int enemyIncreaseEveryWave = 3;
     public bool state = false;
     public bool pause = false;
+    [Header("Player")]
+    public GameObject spaceShipPrefab;
+    public Transform spaceShip;
+    public WeaponStats gunStat;
+    public WeaponStats laserStat;
 
     protected PositionList positionList;
     protected float cycleTimer = 0f;
     protected int score = 0;
+    protected int waveCounter = 0;
 
     // Start is called before the first frame update
     void Awake()
@@ -78,7 +83,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                cycleTimer += Time.deltaTime;
+                cycleTimer += Time.deltaTime * gameSpeed;
             }
         }
     }
@@ -110,13 +115,14 @@ public class GameManager : MonoBehaviour
     /// </summary>
     protected void WaveCycle()
     {
-        if(!pause)
+        waveCounter++;
+        if (waveCounter % enemyIncreaseEveryWave == 0)
         {
-            for (int i = targets.Count; i < maxEnemyAmmount; i++)
-            {
-                SpawnEnemy();
-            }
             maxEnemyAmmount++;
+        }
+        for (int i = targets.Count; i < maxEnemyAmmount; i++)
+        {
+            SpawnEnemy();
         }
     }
 

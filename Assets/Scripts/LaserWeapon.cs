@@ -61,6 +61,8 @@ public class LaserWeapon : Weapon
         {
             lr.positionCount = 0;
         }
+        projectileVelocity = GameManager.instance.laserStat.projectileVelocity;
+        damagePerSecond = GameManager.instance.laserStat.fireRate;
     }
 
     public override void OnEquip()
@@ -70,6 +72,7 @@ public class LaserWeapon : Weapon
         lr.material = tmp.sharedMaterial;
         lr.colorGradient = tmp.colorGradient;
         lr.widthCurve = tmp.widthCurve;
+       
     }
 
     protected void SetSparks(Vector3 targetPosition)

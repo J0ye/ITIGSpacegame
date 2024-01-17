@@ -181,6 +181,7 @@ GameObject:
   - component: {fileID: 3074233340067638033}
   - component: {fileID: 3074233340067638032}
   - component: {fileID: 3015342528199218712}
+  - component: {fileID: 1018600783180046450}
   m_Layer: 0
   m_Name: SpaceShip
   m_TagString: Player
@@ -355,6 +356,21 @@ MonoBehaviour:
   - {fileID: 2485436311395358057}
   - {fileID: 1094385924520472790}
   speed: 15
+--- !u!114 &1018600783180046450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3074233340067638030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30f0fa9e07ecd6941992f08640288cc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectileVelocity: 10
+  projectile: {fileID: 352090096098386607, guid: 75da492f3c07fac479b528af246829b7, type: 3}
+  timeBetweenShots: 0.2
 --- !u!1 &3074233340231105174
 GameObject:
   m_ObjectHideFlags: 0

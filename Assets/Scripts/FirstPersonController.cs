@@ -45,7 +45,13 @@ public class FirstPersonController : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 vector3 = transform.right * x + transform.forward * z;
-        rb.velocity = vector3 * speed * Time.deltaTime * GameManager.instance.gameSpeed;
+        if(GameManager.instance != null)
+        {
+            rb.velocity = vector3 * speed * Time.deltaTime * GameManager.instance.gameSpeed;
+        } else
+        {
+            rb.velocity = vector3 * speed * Time.deltaTime;
+        }
         //StartCoroutine(nameof(iwas));
         //transform.position = Vector3.Lerp();
     }

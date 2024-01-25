@@ -6,6 +6,8 @@ using UnityEngine.Events;
 using TMPro;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using System;
+
 public enum NewMenuState { Main, Setting}
 
 public class MainMenuManager : MonoBehaviour
@@ -25,14 +27,18 @@ public class MainMenuManager : MonoBehaviour
     private void Awake()
     {
         onAwake.Invoke();
-        Time.timeScale = 0.1f;
     }
 
     public void Start()
     {
-        SetMenuState();
+        UpdateUI();
 
         DropDownStart();
+    }
+
+    public void AdjustAudioVolume(float val)
+    {
+        mixer.SetFloat("Volume", Mathf.Log10(val) * 40);
     }
 
     public void LoadMainScene()
@@ -44,8 +50,24 @@ public class MainMenuManager : MonoBehaviour
     {
         mainSceneName = newScene;
     }
+    public void AdjustResolution(Int32 val)
+    {
+        Resolution newReso = m_resolution[val];
+        Screen.SetResolution(newReso.width, newReso.height, Screen.fullScreen);
+    }
 
-    public void SetMenuState()
+    public void AdjustQuality(Int32 val)
+    {
+        QualitySettings.SetQualityLevel(val);
+
+    }
+
+    public void ToggleFullScreen(bool screen)
+    {
+        Screen.fullScreen = screen;
+    }
+
+    public void UpdateUI()
     {
         switch (state)
         {
@@ -64,7 +86,7 @@ public class MainMenuManager : MonoBehaviour
     {
         _ = state == NewMenuState.Setting ? state = NewMenuState.Main : state = NewMenuState.Setting;
 
-        SetMenuState();
+        UpdateUI();
     }
 
 
@@ -83,6 +105,7 @@ public class MainMenuManager : MonoBehaviour
 
         for (int i = 0; i < options.Count; i++)
         {
+            print(options[i] + " = " + Screen.currentResolution.width.ToString() + "x" + Screen.currentResolution.height.ToString());
             if (options[i] == Screen.currentResolution.width.ToString() + "x" + Screen.currentResolution.height.ToString())
             {
                 dropDown.value = i;
@@ -90,5 +113,7 @@ public class MainMenuManager : MonoBehaviour
                 dropDown.RefreshShownValue();
             }
         }
+
+        if (dropDown.value == 0) dropDown.value = options.Count - 1;
     }
 }
